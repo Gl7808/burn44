@@ -1,0 +1,23 @@
+@use "normalize";
+@use "fonts";
+@use "variables";
+@use "utils";
+@use "globals";
+@use 'helpers' as *;
+
+
+@import
+'blocks/buttons',
+'blocks/header',
+'blocks/scroll-nav',
+'blocks/side-social',
+'blocks/modal-menu',
+'blocks/booking-modal',
+'blocks/hero',
+'blocks/device-switcher',
+'blocks/price',
+'blocks/promos',
+'blocks/loyalty',
+'blocks/about',
+'blocks/games'
+;

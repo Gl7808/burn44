@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <!-- Главная страница -->
+    <url>
+        <loc>http://игротека12.рф/</loc>
+        <lastmod>2026-04-13</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Галерея фото -->
+    <url>
+        <loc>http://игротека12.рф/gallery.html</loc>
+        <lastmod>2026-04-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Каталог игр -->
+    <url>
+        <loc>http://игротека12.рф/games.html</loc>
+        <lastmod>2026-04-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Страница клуба (Воинов-Интернационалистов) -->
+    <url>
+        <loc>http://игротека12.рф/voinov.html</loc>
+        <lastmod>2026-04-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>http://игротека12.рф/proletarckaya.html</loc>
+        <lastmod>2026-04-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Политика конфиденциальности -->
+    <url>
+        <loc>http://игротека12.рф/privacy.html</loc>
+        <lastmod>2026-04-09</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+    <!-- Правила клуба -->
+    <url>
+        <loc>http://игротека12.рф/rules.html</loc>
+        <lastmod>2026-04-09</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+</urlset>

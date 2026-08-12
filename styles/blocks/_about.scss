@@ -1,0 +1,251 @@
+
+
+.about {
+  padding-block: calc(var(--section-padding-y) * 2);
+  position: relative;
+
+  // Декоративный фон
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+            radial-gradient(ellipse at 10% 20%, rgba(253, 74, 79, 0.06), transparent 50%),
+            radial-gradient(ellipse at 90% 80%, rgba(168, 75, 255, 0.06), transparent 50%);
+    pointer-events: none;
+  }
+
+  &__container {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__header {
+    text-align: center;
+    max-width: rem(780);
+    margin-inline: auto;
+    margin-bottom: rem(56);
+  }
+
+  &__tag {
+    display: inline-block;
+    padding: rem(8) rem(16);
+    border: 1px solid var(--color-dark-25);
+    border-radius: var(--border-radius-m);
+    background-color: var(--color-dark-15-8);
+    font-family: var(--font-family-accent);
+    font-size: rem(14);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    color: var(--color-accent);
+  }
+
+  &__title { margin: rem(14) 0 rem(16); }
+
+  &__subtitle {
+    font-size: rem(17);
+    line-height: 1.65;
+    color: var(--color-light-30);
+    margin: 0;
+  }
+
+  // Слайдер
+  &__slider {
+    margin-bottom: rem(64);
+    overflow: hidden;
+  }
+
+  &__swiper.swiper {
+    width: 100%;
+    padding-block: rem(24) rem(48); // пространство для теней coverflow
+    overflow: visible; // чтобы боковые слайды не обрезались
+  }
+
+  &__slide {
+    width: 60%;
+    max-width: rem(780);
+    border-radius: rem(20);
+    overflow: hidden;
+    border: 1px solid var(--color-dark-25);
+    box-shadow: 0 rem(20) rem(60) rgba(0, 0, 0, 0.5);
+    transition: transform var(--transition-duration);
+
+    img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+    }
+
+    // Активный слайд ярче
+    &.swiper-slide-active {
+      box-shadow:
+              0 rem(24) rem(70) rgba(0, 0, 0, 0.6),
+              0 0 rem(60) rgba(253, 74, 79, 0.15);
+
+      img { filter: brightness(1); }
+    }
+
+    // Боковые слайды чуть темнее
+    &:not(.swiper-slide-active) img {
+      filter: brightness(0.55) saturate(0.9);
+      transition: filter var(--transition-duration);
+    }
+  }
+
+  &__slider-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(28);
+    margin-top: rem(8);
+  }
+
+  &__arrow {
+    display: grid;
+    place-items: center;
+    width: rem(52);
+    height: rem(52);
+    border: 1px solid var(--color-dark-25);
+    border-radius: var(--border-radius-m);
+    background-color: var(--color-dark-15);
+    cursor: pointer;
+    transition:
+            border-color var(--transition-duration),
+            background-color var(--transition-duration);
+
+    img {
+      width: rem(20);
+      height: rem(20);
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.8;
+      transition: transform var(--transition-duration);
+    }
+
+    &--prev img { transform: rotate(180deg); }
+
+    @include hover {
+      border-color: var(--color-accent);
+      background-color: rgba(253, 74, 79, 0.08);
+      img { opacity: 1; }
+    }
+
+    &--prev:hover img { transform: rotate(180deg) translateX(rem(3)); }
+    &--next:hover img { transform: translateX(rem(3)); }
+  }
+
+  &__pagination {
+    position: static;
+    width: auto;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: rem(6);
+
+    .swiper-pagination-bullet {
+      width: rem(8);
+      height: rem(8);
+      margin: 0 !important;
+      border-radius: rem(4);
+      background-color: var(--color-dark-30);
+      opacity: 1;
+      transition:
+              width var(--transition-duration),
+              background-color var(--transition-duration);
+    }
+
+    .swiper-pagination-bullet-active {
+      width: rem(28);
+      background-color: var(--color-accent);
+    }
+  }
+
+  // Описание концепции
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(120);
+  }
+
+  &__features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: rem(20);
+    width: 100%;
+  }
+
+  &__feature {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: rem(10);
+    padding: rem(26) rem(24);
+    background: linear-gradient(180deg, var(--color-dark-12) 0%, var(--color-dark-10) 100%);
+    border: 1px solid var(--color-dark-20);
+    border-radius: rem(16);
+    transition:
+            border-color var(--transition-duration),
+            transform var(--transition-duration);
+
+    @include hover {
+      border-color: var(--color-accent);
+      transform: translateY(rem(-4));
+    }
+
+    &-icon {
+      width: rem(36);
+      height: rem(36);
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+      margin-bottom: rem(6);
+    }
+
+    &-label {
+      font-family: var(--font-family-accent);
+      font-size: rem(17);
+      font-weight: 700;
+      color: var(--color-light-10);
+      letter-spacing: 0.02em;
+    }
+
+    &-text {
+      font-size: rem(13);
+      line-height: 1.5;
+      color: var(--color-light-35);
+    }
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: rem(12);
+
+    .about__cta-arrow {
+      width: rem(16);
+      height: rem(16);
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.85;
+      transition: transform var(--transition-duration);
+    }
+
+    @include hover {
+      .about__cta-arrow { transform: translateX(rem(4)); }
+    }
+  }
+
+  @include laptop {
+    &__features { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @include mobile {
+    &__slide { width: 80%; }
+    &__features { grid-template-columns: 1fr; }
+    &__slider-controls { gap: rem(16); }
+    &__arrow { width: rem(44); height: rem(44); }
+    &__info { gap: rem(28); }
+  }
+}

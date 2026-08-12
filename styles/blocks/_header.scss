@@ -1,0 +1,118 @@
+
+
+.header {
+  position: fixed;
+  inset-inline: 0;
+  top: 0;
+  z-index: 100;
+  padding-block: rem(16);
+  background: linear-gradient(180deg, rgba(9, 9, 9, 0.85) 0%, rgba(9, 9, 9, 0) 100%);
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    column-gap: rem(24);
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+
+    img {
+      width: auto;
+      height: rem(46);
+      object-fit: contain;
+    }
+
+    @include hover { opacity: 0.85; }
+  }
+
+  &__contacts {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: rem(32);
+  }
+
+  &__contact {
+    display: inline-flex;
+    align-items: center;
+    gap: rem(10);
+    font-size: rem(15);
+    font-weight: 500;
+    color: var(--color-light-25);
+    white-space: nowrap;
+
+    @include hover { color: var(--color-accent); }
+  }
+
+  &__contact-icon {
+    width: rem(18);
+    height: rem(18);
+    opacity: 0.7;
+  }
+
+  @include mobile {
+    &__contacts { display: none; }
+    &__logo img { height: rem(36); }
+  }
+}
+
+.burger {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: rem(6);
+  width: rem(52);
+  height: rem(52);
+  justify-self: start;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 1100;
+
+  &__line {
+    display: block;
+    width: rem(22);
+    height: rem(2);
+    border-radius: rem(2);
+    background-color: var(--color-light-15);
+    transition:
+            transform var(--transition-duration),
+            opacity var(--transition-duration),
+            background-color var(--transition-duration);
+  }
+
+  @include hover {
+    .burger__line { background-color: var(--color-accent); }
+  }
+
+  // Анимация превращения в крестик
+  &.is-open {
+    .burger__line {
+      background-color: var(--color-accent);
+    }
+    .burger__line:nth-child(1) {
+      transform: translateY(rem(8)) rotate(45deg);
+    }
+    .burger__line:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .burger__line:nth-child(3) {
+      transform: translateY(rem(-8)) rotate(-45deg);
+    }
+  }
+
+  @include mobile {
+    width: rem(44);
+    height: rem(44);
+    gap: rem(5);
+  }
+}

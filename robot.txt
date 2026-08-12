@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: http://игротека12.рф/sitemap.xml
