@@ -1,0 +1,244 @@
+
+
+$gap: rem(10);
+
+.advantages {
+  padding-block: calc(var(--section-padding-y) * 2);
+
+  &__header {
+    text-align: center;
+    max-width: rem(680);
+    margin-inline: auto;
+    margin-bottom: rem(56);
+  }
+
+  &__tag {
+    display: inline-block;
+    padding: rem(8) rem(16);
+    border: 1px solid var(--color-dark-25);
+    border-radius: var(--border-radius-m);
+    background-color: var(--color-dark-15-8);
+    font-family: var(--font-family-accent);
+    font-size: rem(14);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    color: var(--color-accent);
+  }
+
+  &__title { margin: rem(14) 0 rem(16); }
+
+  &__subtitle {
+    font-size: rem(16);
+    line-height: 1.6;
+    color: var(--color-light-35);
+    margin: 0;
+  }
+
+  // === GRID 12 КОЛОНОК ===
+  // A(3) - B(6) - C(3)
+  // F(4) - E(2) - G(3) - C(3, растянут)
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: rem(320) rem(320);
+    gap: $gap;
+  }
+
+  // Общая карточка
+  &__card {
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid var(--color-dark-20);
+    background-color: var(--color-dark-10);
+    isolation: isolate;
+
+    // Фон с изображением
+    &-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      transition: transform 0.6s ease;
+    }
+
+    // Затемняющий градиент снизу (для читаемости текста)
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+                      180deg,
+                      rgba(9, 9, 9, 0) 30%,
+                      rgba(9, 9, 9, 0.55) 70%,
+                      rgba(9, 9, 9, 0.92) 100%
+      );
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    &:hover &-bg {
+      transform: scale(1.06);
+    }
+
+    // Позиции в сетке
+    &--a {
+      grid-column: 1 / 4;
+      grid-row: 1;
+    }
+
+    &--b {
+      grid-column: 4 / 10;
+      grid-row: 1;
+    }
+
+    &--c {
+      grid-column: 10 / 13;
+      grid-row: 1 / 3; // растянут на 2 строки
+    }
+
+    &--f {
+      grid-column: 1 / 5;
+      grid-row: 2;
+    }
+
+    &--e {
+      grid-column: 5 / 7;
+      grid-row: 2;
+    }
+
+    &--g {
+      grid-column: 7 / 10;
+      grid-row: 2;
+    }
+  }
+
+  // Контент карточки (заголовок + описание внизу)
+  &__card-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: rem(24);
+    color: var(--color-light-10);
+  }
+
+  &__card-caption {
+    display: inline-block;
+    align-self: flex-start;
+    padding: rem(4) rem(10);
+    border-radius: var(--border-radius-d);
+    background-color: rgba(253, 74, 79, 0.15);
+    border: 1px solid rgba(253, 74, 79, 0.35);
+    font-family: var(--font-family-accent);
+    font-size: rem(11);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: rem(12);
+    backdrop-filter: blur(8px);
+  }
+
+  &__card-title {
+    margin: 0 0 rem(8);
+    font-size: rem(24);
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  &__card-text {
+    margin: 0;
+    font-size: rem(14);
+    line-height: 1.55;
+    color: var(--color-light-30);
+    max-width: rem(360);
+  }
+
+  // Декоративный блок E — с большим лого по центру
+  &__card--e {
+    &::after {
+      background: linear-gradient(
+                      135deg,
+                      rgba(253, 74, 79, 0.18) 0%,
+                      rgba(168, 75, 255, 0.18) 100%
+      );
+    }
+  }
+
+  &__card-decor {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    z-index: 1;
+
+    &-logo {
+      font-family: var(--font-family-accent);
+      font-size: rem(80);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-2) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 rem(40) rgba(253, 74, 79, 0.3);
+    }
+  }
+
+  // Акценты для крупных карточек
+  &__card--b .advantages__card-title,
+  &__card--c .advantages__card-title {
+    font-size: rem(30);
+  }
+
+  // Адаптив — планшет
+  @include tablet {
+    &__grid {
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(4, rem(260));
+    }
+
+    &__card--a { grid-column: 1 / 4; grid-row: 1; }
+    &__card--b { grid-column: 4 / 7; grid-row: 1; }
+    &__card--c { grid-column: 1 / 4; grid-row: 2 / 4; }
+    &__card--f { grid-column: 4 / 7; grid-row: 2; }
+    &__card--e { grid-column: 4 / 6; grid-row: 3; }
+    &__card--g { grid-column: 6 / 7; grid-row: 3; }
+
+    // Растянем G, если E+G не влезают в строку
+    &__card--g { grid-column: 4 / 7; grid-row: 4; }
+    &__card--e { grid-column: 1 / 4; grid-row: 4; }
+  }
+
+  // Адаптив — мобильный
+  @include mobile {
+    &__grid {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(6, rem(280));
+      gap: rem(8);
+    }
+
+    &__card {
+      grid-column: 1 / -1 !important;
+      grid-row: auto !important;
+    }
+
+    // Порядок для мобилки: A → B → F → G → C → E
+    &__card--a { order: 1; }
+    &__card--b { order: 2; }
+    &__card--f { order: 3; }
+    &__card--g { order: 4; }
+    &__card--c { order: 5; }
+    &__card--e { order: 6; }
+
+    &__card-title { font-size: rem(22); }
+    &__card-decor-logo { font-size: rem(64); }
+  }
+}

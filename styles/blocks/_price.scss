@@ -38,7 +38,7 @@
     padding: rem(6);
     background-color: var(--color-dark-12);
     border: 1px solid var(--color-dark-25);
-    border-radius: rem(14);
+
     margin-inline: auto;
     margin-bottom: rem(40);
     display: flex;
@@ -53,7 +53,7 @@
     gap: rem(10);
     padding: rem(14) rem(20);
     border: 0;
-    border-radius: rem(10);
+
     background: transparent;
     font-family: var(--font-family-accent);
     font-size: rem(15);
@@ -133,7 +133,7 @@
     padding: rem(22) rem(18);
     background-color: var(--color-dark-12);
     border: 1px solid var(--color-dark-20);
-    border-radius: rem(16);
+
     transition:
             border-color var(--transition-duration),
             transform var(--transition-duration),
@@ -212,7 +212,7 @@
             radial-gradient(circle at 20% 30%, rgba(168, 75, 255, 0.15), transparent 50%),
             linear-gradient(135deg, var(--color-dark-12) 0%, var(--color-dark-10) 100%);
     border: 1px solid var(--color-dark-25);
-    border-radius: rem(24);
+
     align-items: center;
   }
 
@@ -267,7 +267,7 @@
     padding: rem(18) rem(28);
     background-color: var(--color-dark-15);
     border: 1px solid var(--color-dark-25);
-    border-radius: rem(14);
+
   }
 
   &__ps5-hours {

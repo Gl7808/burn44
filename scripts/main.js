@@ -1,3 +1,4 @@
+
 import { initScrollNav } from './modules/scroll-nav.js';
 import { initHero } from './modules/hero.js';
 import { initModalMenu } from './modules/modal.js';
@@ -6,9 +7,11 @@ import { initGamesSlider } from './modules/slider.js';
 import { initDeviceSwitcher } from './modules/device-switcher.js';
 import { initPriceTabs } from './modules/pricetab.js';
 import { initAbout } from './modules/about.js';
-
+import { initPricelist } from './modules/pricelist.js';
+import { initScrollTop } from './modules/scroll-top.js';
 
 const init = () => {
+
     initScrollNav();
     initHero();
     initModalMenu();
@@ -17,6 +20,8 @@ const init = () => {
     initDeviceSwitcher();
     initPriceTabs();
     initAbout();
+    initPricelist();
+    initScrollTop();
 
 };
 

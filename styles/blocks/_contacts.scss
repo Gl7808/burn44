@@ -1,0 +1,269 @@
+@use '../helpers' as *;
+
+.contacts {
+  padding-block: calc(var(--section-padding-y) * 2);
+
+  &__header {
+    text-align: center;
+    max-width: rem(680);
+    margin-inline: auto;
+    margin-bottom: rem(56);
+  }
+
+  &__tag {
+    display: inline-block;
+    padding: rem(8) rem(16);
+    border: 1px solid var(--color-dark-25);
+    border-radius: var(--border-radius-m);
+    background-color: var(--color-dark-15-8);
+    font-family: var(--font-family-accent);
+    font-size: rem(14);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    color: var(--color-accent);
+  }
+
+  &__title { margin: rem(14) 0 rem(16); }
+
+  &__subtitle {
+    font-size: rem(16);
+    line-height: 1.6;
+    color: var(--color-light-35);
+    margin: 0;
+  }
+
+  &__body {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: rem(24);
+    align-items: stretch;
+  }
+
+  // Левая колонка
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: rem(20);
+    padding: rem(32);
+    background: linear-gradient(180deg, var(--color-dark-12) 0%, var(--color-dark-10) 100%);
+    border: 1px solid var(--color-dark-20);
+
+  }
+
+  &__list {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: rem(14);
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: rem(16);
+    padding: rem(16) rem(18);
+    background-color: var(--color-dark-15);
+    border: 1px solid var(--color-dark-20);
+
+    transition:
+            border-color var(--transition-duration),
+            transform var(--transition-duration);
+
+    @include hover {
+      border-color: var(--color-accent);
+      transform: translateX(rem(4));
+    }
+  }
+
+  &__item-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: rem(48);
+    height: rem(48);
+
+    background-color: var(--color-dark-20);
+    font-family: var(--font-family-accent);
+    font-size: rem(20);
+    font-weight: 700;
+    color: var(--color-accent);
+
+    img {
+      width: rem(22);
+      height: rem(22);
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.85;
+    }
+  }
+
+  &__item-body {
+    display: grid;
+    gap: rem(4);
+    min-width: 0;
+  }
+
+  &__item-label {
+    font-size: rem(12);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-light-40);
+  }
+
+  &__item-value {
+    font-family: var(--font-family-accent);
+    font-size: rem(18);
+    font-weight: 700;
+    color: var(--color-light-10);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @include hover { color: var(--color-accent); }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: rem(16);
+  }
+
+  &__socials {
+    display: flex;
+    gap: rem(10);
+  }
+
+  &__social {
+    display: grid;
+    place-items: center;
+    width: rem(52);
+    height: rem(52);
+    border: 1px solid var(--color-dark-25);
+    border-radius: var(--border-radius-m);
+    background-color: var(--color-dark-15);
+    transition:
+            border-color var(--transition-duration),
+            background-color var(--transition-duration);
+
+    img {
+      width: rem(22);
+      height: rem(22);
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.8;
+      transition:
+              opacity var(--transition-duration),
+              transform var(--transition-duration);
+    }
+
+    @include hover {
+      border-color: var(--color-accent);
+      background-color: rgba(253, 74, 79, 0.08);
+
+      img {
+        opacity: 1;
+        transform: scale(1.08);
+      }
+    }
+  }
+
+  // Правая колонка: карта
+  &__map {
+    position: relative;
+    min-height: rem(520);
+
+    border: 1px solid var(--color-dark-25);
+    overflow: hidden;
+
+    iframe {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    // Фильтр-маска поверх карты: ч/б + инверсия под тёмную тему
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      backdrop-filter: grayscale(100%) invert(92%) contrast(1.1);
+      -webkit-backdrop-filter: grayscale(100%) invert(92%) contrast(1.1);
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    // При наведении маска плавно исчезает — карта становится цветной
+    &:hover::after {
+      opacity: 0;
+    }
+
+    // Фолбэк: если backdrop-filter не поддерживается — фильтр на сам iframe
+    @supports not (backdrop-filter: grayscale(100%)) {
+      &::after { display: none; }
+
+      iframe {
+        filter: grayscale(100%) invert(92%) contrast(1.1);
+        transition: filter 0.5s ease;
+      }
+
+      &:hover iframe {
+        filter: none;
+      }
+    }
+  }
+
+  &__map-hint {
+    position: absolute;
+    left: rem(16);
+    bottom: rem(16);
+    z-index: 2;
+    padding: rem(8) rem(14);
+    border-radius: var(--border-radius-d);
+    background-color: var(--color-dark-15-8);
+    border: 1px solid var(--color-dark-25);
+    backdrop-filter: blur(8px);
+    font-family: var(--font-family-accent);
+    font-size: rem(11);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-light-25);
+    pointer-events: none;
+    transition: opacity var(--transition-duration);
+  }
+
+  &__map:hover &__map-hint {
+    opacity: 0;
+  }
+
+  @include laptop {
+    &__body { grid-template-columns: 1fr; }
+    &__map { min-height: rem(440); }
+  }
+
+  @include mobile {
+    &__info { padding: rem(24) rem(20); }
+    &__item { padding: rem(14) rem(14); }
+    &__item-value { font-size: rem(16); }
+    &__map { min-height: rem(360); }
+
+    &__actions {
+      flex-direction: column;
+      align-items: stretch;
+
+      .btn { width: 100%; }
+    }
+
+    &__socials { justify-content: center; }
+  }
+}
