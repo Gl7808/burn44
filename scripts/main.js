@@ -9,6 +9,7 @@ import { initPriceTabs } from './modules/pricetab.js';
 import { initAbout } from './modules/about.js';
 import { initPricelist } from './modules/pricelist.js';
 import { initScrollTop } from './modules/scroll-top.js';
+import { initFaq } from './modules/faq.js';
 
 const init = () => {
 
@@ -22,6 +23,7 @@ const init = () => {
     initAbout();
     initPricelist();
     initScrollTop();
+    initFaq();
 
 };
 
